@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_ui/presentation/widgets/tab_scroll.dart';
 
 class ShopView extends StatefulWidget {
   const ShopView({Key? key}) : super(key: key);
@@ -30,48 +31,188 @@ class _ShopViewState extends State<ShopView> {
             children: [
               Container(
                 height: 52.0,
-                decoration: const BoxDecoration(
-                  color: Colors.grey,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4.0),
+                  color: Colors.grey[200],
                 ),
-                margin: const EdgeInsets.symmetric(vertical: 16),
+                margin:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: const Center(
+                  child: TextField(
+                    decoration: InputDecoration(
+                        icon: Icon(Icons.search),
+                        hintText: 'search',
+                        border: InputBorder.none),
+                  ),
+                ),
               ),
-              SizedBox(
-                height: 42,
-                child: Container(
-                  color: Colors.grey,
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0, top: 16.0),
+                child: SizedBox(
+                  height: 38,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      scrollShape("All"),
+                      scrollShape("Clothes"),
+                      scrollShape("Shoes"),
+                      scrollShape("Accessories")
+                    ],
+                  ),
                 ),
               ),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Row(
-                        children: [
-                          const Text('New Arrivals'),
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.arrow_forward),
-                          ),
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'New Arrivals',
+                              style: TextStyle(fontSize: 28),
+                            ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.arrow_forward),
+                            ),
+                          ],
+                        ),
                       ),
                       Container(
-                        height: 300.0,
-                        color: Colors.blue,
+                        height: 280.0,
+                        margin: const EdgeInsets.symmetric(horizontal: 16),
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              width: 150,
+                              margin: const EdgeInsets.only(right: 16),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        image: const DecorationImage(
+                                            image: NetworkImage(
+                                                'https://cdn.pixabay.com/photo/2017/08/01/11/48/woman-2564660_960_720.jpg'),
+                                            fit: BoxFit.cover),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Stack(
+                                        children: [
+                                          Positioned(
+                                            right: 8,
+                                            top: 8,
+                                            child: CircleAvatar(
+                                              backgroundColor: Colors.white,
+                                              radius: 14,
+                                              foregroundColor: Colors.black,
+                                              child: IconButton(
+                                                onPressed: () {},
+                                                iconSize: 15,
+                                                icon: const Icon(
+                                                  Icons.favorite_border,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 8,
+                                  ),
+                                  const Text('Addidas Hoodie'),
+                                  const SizedBox(
+                                    height: 6,
+                                  ),
+                                  const Text('\$40.99'),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
                       ),
                       const SizedBox(height: 28.0),
-                      Row(
-                        children: [
-                          const Text('Shop Again'),
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.arrow_forward),
-                          ),
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Shop Again',
+                              style: TextStyle(fontSize: 28),
+                            ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.arrow_forward),
+                            ),
+                          ],
+                        ),
                       ),
                       Container(
-                        height: 300.0,
-                        color: Colors.blue,
+                        height: 280.0,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              width: 150,
+                              margin: const EdgeInsets.only(right: 16),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        image: const DecorationImage(
+                                            image: NetworkImage(
+                                                'https://cdn.pixabay.com/photo/2017/08/01/11/48/woman-2564660_960_720.jpg'),
+                                            fit: BoxFit.cover),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Stack(
+                                        children: [
+                                          Positioned(
+                                            right: 8,
+                                            top: 8,
+                                            child: CircleAvatar(
+                                              backgroundColor: Colors.white,
+                                              radius: 14,
+                                              foregroundColor: Colors.black,
+                                              child: IconButton(
+                                                onPressed: () {},
+                                                iconSize: 15,
+                                                icon: const Icon(
+                                                  Icons.favorite_border,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 8,
+                                  ),
+                                  const Text('Hoodie'),
+                                  const SizedBox(
+                                    height: 6,
+                                  ),
+                                  const Text('\$40.99'),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
                       ),
+                      const SizedBox(height: 120),
                     ],
                   ),
                 ),
